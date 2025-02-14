@@ -1,56 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymaia-do <ymaia-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 17:30:48 by ymaia-do          #+#    #+#             */
-/*   Updated: 2025/02/14 18:07:54 by ymaia-do         ###   ########.fr       */
+/*   Created: 2025/02/14 17:33:53 by ymaia-do          #+#    #+#             */
+/*   Updated: 2025/02/14 18:17:13 by ymaia-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_elem **a)
+void	rra(t_elem **a)
 {
-	t_elem	*temp;
 	t_elem	*last;
+	t_elem	*second_last;
 
 	if(!(*a || !(*a)->next))
 		return;
-	temp = *a;
-	*a = (*a)->next;
-	last = *a;
-	while(last->next)
-		last = last->next;
-	last->next = temp;
-	temp->next = NULL;
+	second_last = *a;
+	while(second_last->next && second_last->next->next)
+		second_last = second_last->next;
+	last = second_last->next;
+	second_last->next = NULL;
+	last->next = *a;
+	*a = last;
 }
 
-void	rb(t_elem **b)
+void	rrb(t_elem **b)
 {
-	t_elem	*temp;
 	t_elem	*last;
+	t_elem	*second_last;
 
-	if(!(*b || (*b)->next))
+	if(!(*b || !(*b)->next))
 		return;
-	temp = *b;
-	*b = (*b)->next;
-	last = *b;
-	while(last->next)
-		last = last->next;
-	last->next = temp;
-	temp->next = NULL;
+	second_last = *b;
+	while(second_last->next && second_last->next->next)
+		second_last = second_last->next;
+	last = second_last->next;
+	second_last->next = NULL;
+	last->next = *b;
+	*b = last;
 }
 
-void	rr(t_elem **a, t_elem **b)
+void	rrr(t_elem **a, t_elem **b)
 {
-	ra(a);
-	rb(b);
+	rra(a);
+	rrb(b);
 }
-
-/* void print_stack(t_elem *stack)
+/* 
+void print_stack(t_elem *stack)
 {
 	while(stack)
 	{
@@ -72,6 +72,7 @@ t_elem *new_node(int num)
 	}
 	return (node);
 }
+#include <stdio.h>
 
 int main() 
 {
@@ -84,16 +85,16 @@ int main()
     b->next = new_node(5);
     b->next->next = new_node(6);
 
-    printf("Pilha a antes do 'ra': ");
+    printf("Pilha a antes do 'rra': ");
     print_stack(a);
-	printf("Pilha b antes do 'rb': ");
+	printf("Pilha b antes do 'rrb': ");
 	print_stack(b);
 
-    rr(&a, &b);
+    rrr(&a, &b);
 
-    printf("Pilha a depois do 'ra': ");
+    printf("Pilha a depois do 'rra': ");
     print_stack(a);
-	printf("Pilha a depois do 'rb': ");
+	printf("Pilha a depois do 'rrb': ");
 	print_stack(b);
 
     return 0;
