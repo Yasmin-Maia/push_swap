@@ -31,8 +31,10 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = $(LIBFT) $(LIBFTPRINTF)
 
+all: $(NAME)
+
 $(NAME): $(OBJS) $(LIBFT) $(LIBFTPRINTF)
-	$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -50,3 +52,6 @@ $(LIBFT):
 
 $(LIBFTPRINTF):
 	make -C $(LIBFTPRINTF_DIR)
+
+
+.PHONY: all clean fclean re
