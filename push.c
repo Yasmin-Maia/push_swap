@@ -6,13 +6,13 @@
 /*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 11:26:46 by yasmin            #+#    #+#             */
-/*   Updated: 2025/02/21 19:25:47 by yasmin           ###   ########.fr       */
+/*   Updated: 2025/02/26 17:14:48 by yasmin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pa(t_elem **a, t_elem **b)
+void	pb(t_elem **b, t_elem **a)
 {
 	t_elem	*temp;
 
@@ -22,10 +22,10 @@ void	pa(t_elem **a, t_elem **b)
 	(*a)->next = *b;
 	*b = *a;
 	*a = temp;
-	ft_printf("pa\n");
+	ft_printf("pb\n");
 }
 
-void	pb(t_elem **b, t_elem **a)
+void	pa(t_elem **a, t_elem **b)
 {
 	t_elem	*temp;
 
@@ -35,7 +35,7 @@ void	pb(t_elem **b, t_elem **a)
 	(*b)->next = *a;
 	*a = *b;
 	*b = temp;
-	ft_printf("pb\n");
+	ft_printf("pa\n");
 }
 /* 
 void print_stack(t_elem *stack)

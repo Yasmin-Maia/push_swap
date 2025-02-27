@@ -6,7 +6,7 @@
 #    By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 14:53:46 by ymaia-do          #+#    #+#              #
-#    Updated: 2025/02/21 20:18:26 by yasmin           ###   ########.fr        #
+#    Updated: 2025/02/26 18:16:08 by yasmin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRCS = check.c \
        rotate.c \
        sort_elem.c \
        sort_elem_utils.c \
-       swap.c
+       swap.c \
+       error.c
 
 OBJS = $(SRCS:.c=.o)
 CC = cc
@@ -32,9 +33,8 @@ CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = $(LIBFT) $(LIBFTPRINTF)
 
 all: $(NAME)
-
 $(NAME): $(OBJS) $(LIBFT) $(LIBFTPRINTF)
-	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+	$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -52,6 +52,3 @@ $(LIBFT):
 
 $(LIBFTPRINTF):
 	make -C $(LIBFTPRINTF_DIR)
-
-
-.PHONY: all clean fclean re

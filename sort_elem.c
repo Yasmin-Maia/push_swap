@@ -6,7 +6,7 @@
 /*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 17:47:34 by yasmin            #+#    #+#             */
-/*   Updated: 2025/02/21 19:40:05 by yasmin           ###   ########.fr       */
+/*   Updated: 2025/02/26 17:05:02 by yasmin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,29 +28,40 @@ int	is_sorted(t_elem *a)
 
 void	sort_three(t_elem **a)
 {
-	int		first;
 	int		second;
 	int		third;
 
-	first = (*a)->num;
 	second = (*a)->next->num;
 	third = (*a)->next->next->num;
-	if(first > second && second < third && first < third)
+	if((*a)->num > second && second < third && (*a)->num < third)
 		sa(a);
-	else if(first > second && second > third)
+	else if((*a)->num > second && second > third)
 	{
 		sa(a);
 		rra(a);
 	}
-	else if(first > second && second < third && first > third)
+	else if((*a)->num > second && second < third && (*a)->num > third)
 		ra(a);
-	else if(first < second && second > third && first > third)
+	else if((*a)->num < second && second > third && (*a)->num > third)
+	{
+		rra(a);
+		sa(a);
+	}
+	else if((*a)->num < second && second > third && (*a)->num < third)
 	{
 		sa(a);
 		ra(a);
 	}
-	else if(first < second && second > third && first < third)
-		rra(a);
+}
+void	sort_four(t_elem **a, t_elem **b)
+{
+	int	min;
+
+	min = find_min(*a);
+	move_to_top(a, min);
+	pb(b, a);
+	sort_three(a);
+	pa(a, b);
 }
 
 void	sort_five(t_elem **a, t_elem **b)
