@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 16:25:04 by ymaia-do          #+#    #+#             */
-/*   Updated: 2025/03/05 18:59:37 by yasmin           ###   ########.fr       */
+/*   Created: 2025/03/05 16:13:37 by yasmin            #+#    #+#             */
+/*   Updated: 2025/03/05 18:56:11 by yasmin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+long	ft_atol(const char *nptr)
 {
 	int		i;
 	int		sign;
-	int		result;
+	long	result;
 
 	i = 0;
 	sign = 1;
@@ -36,23 +36,3 @@ int	ft_atoi(const char *nptr)
 	}
 	return (result * sign);
 }
-/* 
-#include <stdlib.h>
-
-int	main(void)
-{
-	char 	*s;
-	char 	*e;
-
-	s = "546:5";
-	e = "-4886";
-	ft_atoi(s);
-	printf("ft_atoi: %s\n", s);
-	ft_atoi(e);
-	printf("ft_atoi: %s\n", e);
-	atoi(s);
-	printf("atoi: %s\n", s);
-	atoi(e);
-	printf("atoi: %s\n", e);
-	return (0);
-} */

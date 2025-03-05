@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymaia-do <ymaia-do@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 17:33:53 by ymaia-do          #+#    #+#             */
-/*   Updated: 2025/02/14 18:17:13 by ymaia-do         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:37:22 by yasmin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,41 @@ void	rra(t_elem **a)
 	t_elem	*last;
 	t_elem	*second_last;
 
-	if(!(*a || !(*a)->next))
+	if(!(*a) || !((*a)->next))
+		return;
+	second_last = *a;
+	while(second_last->next && second_last->next->next)
+		second_last = second_last->next;
+	last = second_last->next;
+	second_last->next = NULL;
+	last->next = *a;
+	*a = last;
+	ft_printf("rra\n");
+}
+
+void	rrb(t_elem **b)
+{
+	t_elem	*last;
+	t_elem	*second_last;
+
+	if(!(*b || !(*b)->next))
+		return;
+	second_last = *b;
+	while(second_last->next && second_last->next->next)
+		second_last = second_last->next;
+	last = second_last->next;
+	second_last->next = NULL;
+	last->next = *b;
+	*b = last;
+	ft_printf("rrb\n");
+}
+
+void	rra_no_print(t_elem **a)
+{
+	t_elem	*last;
+	t_elem	*second_last;
+
+	if(!(*a) || !((*a)->next))
 		return;
 	second_last = *a;
 	while(second_last->next && second_last->next->next)
@@ -28,7 +62,7 @@ void	rra(t_elem **a)
 	*a = last;
 }
 
-void	rrb(t_elem **b)
+void	rrb_no_print(t_elem **b)
 {
 	t_elem	*last;
 	t_elem	*second_last;
@@ -46,8 +80,9 @@ void	rrb(t_elem **b)
 
 void	rrr(t_elem **a, t_elem **b)
 {
-	rra(a);
-	rrb(b);
+	rra_no_print(a);
+	rrb_no_print(b);
+	ft_printf("rrr\n");
 }
 /* 
 void print_stack(t_elem *stack)

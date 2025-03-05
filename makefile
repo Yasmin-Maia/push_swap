@@ -3,34 +3,53 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ymaia-do <ymaia-do@student.42.fr>          +#+  +:+       +#+         #
+#    By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 14:53:46 by ymaia-do          #+#    #+#              #
-#    Updated: 2025/02/03 15:02:15 by ymaia-do         ###   ########.fr        #
+#    Updated: 2025/03/05 19:00:13 by yasmin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
-LIBFTPRINTF = ./ft_printf/ft_printf.a
-LIBFTPRINTF_DIR = ./ft_printf
-LIBFT = ./libft/libft.a
 LIBFT_DIR = ./libft
-SRCS = ft_printf.c ft_printf_utils.c ft_printf_utils2.c
-		
+LIBFTPRINTF_DIR = ./ft_printf
+LIBFT = $(LIBFT_DIR)/libft.a
+LIBFTPRINTF = $(LIBFTPRINTF_DIR)/ft_printf.a
+
+SRCS = check.c \
+       create_stack.c \
+       neutralize.c \
+       main.c \
+       push.c \
+       reverse_rotate.c \
+       rotate.c \
+       sort_elem.c \
+       sort_elem_utils.c \
+       swap.c \
+       error.c
 
 OBJS = $(SRCS:.c=.o)
-CC = cc -c -Wall -Wextra -Werror
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+LDFLAGS = $(LIBFT) $(LIBFTPRINTF)
 
-all: $(NAME) 
+all: $(NAME)
+$(NAME): $(OBJS) $(LIBFT) $(LIBFTPRINTF)
+	$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
 
-$(NAME): $(OBJS)
-	ar -rcs $(NAME) $(OBJS)
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
 
-fclean:
-	rm -f $(OBJS)
+fclean: clean
 	rm -f $(NAME)
-	
+
 re: fclean all
+
+$(LIBFT):
+	make -C $(LIBFT_DIR)
+
+$(LIBFTPRINTF):
+	make -C $(LIBFTPRINTF_DIR)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymaia-do <ymaia-do@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:19:52 by ymaia-do          #+#    #+#             */
-/*   Updated: 2024/11/08 14:41:12 by ymaia-do         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:56:06 by yasmin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <string.h>
 # include <stdlib.h>
 
+long	ft_atol(const char *nptr);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);

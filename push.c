@@ -1,80 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/03 14:22:43 by ymaia-do          #+#    #+#             */
-/*   Updated: 2025/02/21 17:40:00 by yasmin           ###   ########.fr       */
+/*   Created: 2025/02/18 11:26:46 by yasmin            #+#    #+#             */
+/*   Updated: 2025/02/26 17:14:48 by yasmin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_elem **a)
+void	pb(t_elem **b, t_elem **a)
 {
 	t_elem	*temp;
-	
-	if(*a && (*a)->next)
-	{
-		temp = (*a)->next;
-		(*a)->next = temp->next;
-		temp->next = *a;
-		*a = temp;
-		ft_printf("sa\n");
-	}	
+
+	if(*a == NULL)
+		return;
+	temp = (*a)->next;
+	(*a)->next = *b;
+	*b = *a;
+	*a = temp;
+	ft_printf("pb\n");
 }
 
-void	sb(t_elem **b)
+void	pa(t_elem **a, t_elem **b)
 {
 	t_elem	*temp;
-	
-	if(*b && (*b)->next)
-	{
-		temp = (*b)->next;
-		(*b)->next = temp->next;
-		temp->next = *b;
-		*b = temp;
-		ft_printf("sb\n");
-	}	
+
+	if(*b == NULL)
+		return;
+	temp = (*b)->next;
+	(*b)->next = *a;
+	*a = *b;
+	*b = temp;
+	ft_printf("pa\n");
 }
-
-void	sa_no_print(t_elem **a)
-{
-	t_elem	*temp;
-	
-	if(*a && (*a)->next)
-	{
-		temp = (*a)->next;
-		(*a)->next = temp->next;
-		temp->next = *a;
-		*a = temp;
-	}	
-}
-
-void	sb_no_print(t_elem **b)
-{
-	t_elem	*temp;
-	
-	if(*b && (*b)->next)
-	{
-		temp = (*b)->next;
-		(*b)->next = temp->next;
-		temp->next = *b;
-		*b = temp;
-	}	
-}
-
-void	ss(t_elem **a, t_elem **b)
-{
-	sa_no_print(a);
-	sb_no_print(b);
-	ft_printf("ss\n");
-}
-
-
-/* void print_stack(t_elem *stack)
+/* 
+void print_stack(t_elem *stack)
 {
 	while(stack)
 	{
@@ -108,17 +72,23 @@ int main()
     b->next = new_node(5);
     b->next->next = new_node(6);
 
-    printf("Pilha a antes do 'ss': ");
+    printf("Pilha a antes do 'pa': ");
     print_stack(a);
-	printf("Pilha b antes do 'ss': ");
+	printf("Pilha b antes do 'pb': ");
 	print_stack(b);
 
-    ss(&a, &b);
-
-    printf("Pilha a depois do 'ss': ");
+	pb(&b, &a);
+	printf("Pilha a depois do 'pb': ");
     print_stack(a);
-	printf("Pilha a depois do 'ss': ");
+	printf("Pilha b depois do 'pb': ");
 	print_stack(b);
+
+    pa(&a, &b);
+    printf("Pilha a depois do 'pa': ");
+    print_stack(a);
+	printf("Pilha b depois do 'pa': ");
+	print_stack(b);
+
 
     return 0;
-} */
+} */ 
