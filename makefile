@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+         #
+#    By: ldummer- <ldummer-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 14:53:46 by ymaia-do          #+#    #+#              #
-#    Updated: 2025/03/05 19:00:13 by yasmin           ###   ########.fr        #
+#    Updated: 2025/03/06 15:22:51 by ldummer-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,22 +34,29 @@ CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = $(LIBFT) $(LIBFTPRINTF)
 
 all: $(NAME)
+
 $(NAME): $(OBJS) $(LIBFT) $(LIBFTPRINTF)
-	$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
+	$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
-
-clean:
-	rm -f $(OBJS)
-
-fclean: clean
-	rm -f $(NAME)
-
-re: fclean all
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
 $(LIBFTPRINTF):
 	make -C $(LIBFTPRINTF_DIR)
+
+clean:
+	@make -C $(LIBFT_DIR) clean
+	@make -C $(LIBFTPRINTF_DIR) clean
+	rm -f $(OBJS)
+
+fclean: clean
+	@make -C $(LIBFT_DIR) fclean
+	@make -C $(LIBFTPRINTF_DIR) fclean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
