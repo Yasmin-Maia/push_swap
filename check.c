@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ldummer- <ldummer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:03:43 by yasmin            #+#    #+#             */
-/*   Updated: 2025/03/05 18:04:01 by yasmin           ###   ########.fr       */
+/*   Updated: 2025/03/06 14:53:46 by ldummer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,7 @@ int	check_duplicate(t_elem **stack)
 		while (checker->next != NULL)
 		{
 			if (current->num == checker->num)
-			{
 				error_check(stack);
-				exit(1);
-			}
 			checker = checker->next;
 		}
 		current = current->next;
