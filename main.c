@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ldummer- <ldummer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:46:30 by yasmin            #+#    #+#             */
-/*   Updated: 2025/03/05 18:44:12 by yasmin           ###   ########.fr       */
+/*   Updated: 2025/03/06 14:55:29 by ldummer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	sorting(t_elem **a, t_elem **b)
 		sort_five(a, b);
 	else
 		radix_sort(a, b);
-	if (is_sorted(*a))
-		write(1, "OK\n", 3);
 }
 
+
+//												REMOVER ESTA FUNCAO !
 void print_stack(t_elem **stack, char c)
 {
 	t_elem 	*current;
@@ -63,13 +63,10 @@ int	main(int ac, char **av)
 	if(ac == 2 && av[1][0] == '\0')
 		return (1);
 	if(!check_arg(ac, av, &a))
-	{
 		error_check(&a);
-		return (1);
-	}
 	neutralize(&a);
 	sorting(&a, &b);
-	print_stack(&a, 'a');
+	//print_stack(&a, 'a');						// REMOVER
 	free_list(a);
 	free_list(b);
 	return (0);
