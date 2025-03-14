@@ -6,7 +6,7 @@
 /*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:39:42 by ymaia-do          #+#    #+#             */
-/*   Updated: 2025/03/05 18:43:55 by yasmin           ###   ########.fr       */
+/*   Updated: 2025/03/14 17:01:49 by yasmin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,22 @@ typedef struct s_elem
 {
 	int num;
 	int index;
+	int	chunk;
 	struct s_elem *next;
 }	t_elem;
 
-t_elem	*check_arg(int ac, char **av, t_elem **a);
-char	**split_arg(char *str, int *ac, int *num, int *i);
-int	is_number(char *str);
+//t_elem	*check_arg(int ac, char **av, t_elem **a);
+//char	**split_arg(char *str, int *ac, int *num, int *i);
+int	dont_is_number(char *str);
 int	check_duplicate(t_elem **stack);
+int	countain_space(char *str);
 
 t_elem *create_elem(int num);
 void	add_elem(t_elem **stack, t_elem *new);
 
 void	error_check(t_elem **stack);
-void	free_list(t_elem *list);
-void	free_argv(char **argv);
+void	free_list(t_elem **list);
+//void	free_argv(char **argv);
 
 void	print_stack(t_elem **stack, char c);
 int		main(int ac, char **av);
@@ -60,7 +62,7 @@ int 	find_max(t_elem *stack);
 int		get_max_bits(t_elem *stack);
 int		list_size(t_elem *stack);
 
-int		is_sorted(t_elem *a);
+int		is_sorted(t_elem **a);
 void	sort_three(t_elem **a);
 void	sort_four(t_elem **a, t_elem **b);
 void	sort_five(t_elem **a, t_elem **b);
@@ -73,5 +75,7 @@ void	sb_no_print(t_elem **b);
 void	ss(t_elem **a, t_elem **b);
 
 void	neutralize(t_elem **stack);
+int		ft_parsing(t_elem **stack, int argc, char **argv);
+int		build_stack(t_elem **stack, char **new_stack, int i);
 
 #endif

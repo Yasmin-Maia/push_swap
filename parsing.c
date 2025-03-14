@@ -1,60 +1,71 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 13:03:43 by yasmin            #+#    #+#             */
-/*   Updated: 2025/03/14 16:06:48 by yasmin           ###   ########.fr       */
+/*   Created: 2025/03/14 11:03:56 by yasmin            #+#    #+#             */
+/*   Updated: 2025/03/14 17:10:53 by yasmin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*#include "push_swap.h"
+#include "push_swap.h"
 
-t_elem	*check_arg(int ac, char **av, t_elem **a)
+int	ft_parsing(t_elem **stack, int argc, char **argv)
 {
-	int	i;
-	int	num;
-	long	n;
+	char	**new_stack;
+	int		i;
+	int 	result;
+	int		j;
 
-	num = 0;
-	if(ac == 2)
-		av = split_arg(av[1], &ac, &num, &i);
-	else
-		i = 1;
-	while(i < ac)
+	i = 1;
+	result = 0;
+	j = 0;
+	new_stack = argv;
+	if (argc < 2)
+		return (0);
+	if (argc == 2 && !countain_space(argv[1]))
 	{
-		if(!is_number(av[i]))
+		new_stack = ft_split(argv[1], ' ');
+		i = 0;
+	}
+	result = build_stack(stack, new_stack, i);
+	 if (new_stack != argv)
+	{
+		while (new_stack[j])
+			free(new_stack[j++]);
+		free(new_stack);
+	}
+	return (result);
+}
+
+int	build_stack(t_elem **stack, char **new_stack, int i)
+{
+	int	n;
+
+	n = 0;
+	while (new_stack[i])
+	{
+		if (dont_is_number(new_stack[i]))
 		{
-			if(num)
-				free_argv(av);
-			return (0);
+			free_list(stack);
+			return (1);
 		}
-		n = ft_atoi(av[i]);
-		add_elem(a, create_elem(n));
+		n = ft_atoi(new_stack[i]);
+		add_elem(stack, create_elem(n));
+		if (check_duplicate(stack))
+		{
+			free_list(stack);
+			return (1);
+		}
 		i++;
 	}
-	check_duplicate(a);
-	if(num)
-		free_argv(av);
-	return (*a);
+	return (0);
 }
 
-char	**split_arg(char *str, int *ac, int *num, int *i)
-{
-	char	**av;
 
-	av = ft_split(str, ' ');
-	*ac = 0;
-	while(av[*ac])
-		(*ac)++;
-	*num = 1;
-	*i = 0;
-	return (av);
-}
-
-int	is_number(char *str)
+int	dont_is_number(char *str)
 {
 	int i;
 	long n;
@@ -109,4 +120,4 @@ int	countain_space(char *str)
 		i++;
 	}
 	return (1);
-} */
+}

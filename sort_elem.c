@@ -6,18 +6,18 @@
 /*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 17:47:34 by yasmin            #+#    #+#             */
-/*   Updated: 2025/03/05 19:07:09 by yasmin           ###   ########.fr       */
+/*   Updated: 2025/03/14 16:44:30 by yasmin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_sorted(t_elem *a)
+int	is_sorted(t_elem **a)
 {
 	t_elem	*temp;
 
-	temp = a;
-	while(temp && temp->next)
+	temp = *a;
+	while(temp->next)
 	{
 		if(temp->num > temp->next->num)
 			return (0);
@@ -84,27 +84,30 @@ void	sort_five(t_elem **a, t_elem **b)
 
 void	radix_sort(t_elem **a, t_elem **b)
 {
-	int	max_bits;
-	int i;
-	int	size;
-	int	j;
+    int	max_bits;
+    int i;
+    int	size;
+    int	j;
+    t_elem *current;
 
-	max_bits = get_max_bits(*a);
-	i = 0;
-	size = list_size(*a);
-	while(i < max_bits)
-	{
-		j = 0;
-		while(j < size)
-		{
-			if((((*a)->index >> i) & 1) == 0)
-				pb(b, a);
-			else
-				ra(a);
-			j++;
-		}
-		while(*b)
-			pa(a, b);
-		i++;
-	}
+    max_bits = get_max_bits(*a);
+    i = 0;
+    while(i < max_bits)
+    {
+        j = 0;
+        size = list_size(*a);
+        current = *a;
+        while(j < size)
+        {
+            if(((current->index >> i) & 1) == 0)
+                pb(b, a);
+            else
+                ra(a);
+            current = *a; // Atualiza o ponteiro para o próximo elemento
+            j++;
+        }
+        while(*b)
+            pa(a, b);
+        i++;
+    }
 }

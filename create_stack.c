@@ -6,7 +6,7 @@
 /*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:59 by yasmin            #+#    #+#             */
-/*   Updated: 2025/03/05 18:03:51 by yasmin           ###   ########.fr       */
+/*   Updated: 2025/03/14 15:43:58 by yasmin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_elem *create_elem(int num)
 		return (NULL);
 	node->num = num;
 	node->index = -1;
+	node->chunk = -1;
 	node->next = NULL;
 	return (node);
 }
@@ -39,3 +40,4 @@ void	add_elem(t_elem **stack, t_elem *new)
 		temp = temp->next;
 	temp->next = new;
 }
+

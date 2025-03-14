@@ -1,0 +1,89 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   radix.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/12 18:20:28 by yasmin            #+#    #+#             */
+/*   Updated: 2025/03/12 19:13:01 by yasmin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+void sort_chunks(t_elem **a, t_elem **b, int chunk_size)
+{
+    int size;
+    int chunks;
+    int i;
+    int j;
+
+	size = list_size(*a);
+	chunks = (size + chunk_size - 1) / chunk_size;
+    i = 0;
+    while (i < chunks)
+    {
+        j = 0;
+        while (j < chunk_size && *a) 
+        {
+            pb(b, a);
+            j++;
+        }
+        sort_small_chunk(b);
+        while (*b) 
+        {
+            pa(a, b);
+        }
+        i++;
+    }
+    final_sort(a, b);
+}
+
+void sort_small_chunk(t_elem **b)
+{
+    t_elem *sorted = NULL; 
+    t_elem *current = *b;
+    t_elem *temp;
+    t_elem *next;
+
+    if (!*b || !(*b)->next)
+    {
+        return ;
+    }
+    while (current) 
+    {
+        next = current->next;
+        if (!sorted || sorted->num >= current->num)
+        {
+            current->next = sorted;
+            sorted = current;
+        }
+        else 
+        {
+             temp = sorted;
+            while (temp->next && temp->next->num < current->num) {
+                temp = temp->next;
+            }
+            current->next = temp->next;
+            temp->next = current;
+        }
+        current = next;
+    }
+    *b = sorted;
+}
+
+void final_sort(t_elem **a, t_elem **b)
+{
+    while (*b)
+    {
+        pa(a, b);
+    }
+    if (!is_sorted(*a))
+    {
+        while (!is_sorted(*a))
+        {
+            ra(a);
+        }
+    }
+}

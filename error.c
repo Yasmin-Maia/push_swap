@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldummer- <ldummer-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 17:39:04 by yasmin            #+#    #+#             */
-/*   Updated: 2025/03/06 14:48:54 by ldummer-         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:17:34 by yasmin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,26 @@
 void	error_check(t_elem **stack)
 {
 	if (stack)
-		free_list(*stack);
+		free_list(stack);
 	write(2, "Error\n", 6);
 	exit(1);
 }
 
-void	free_list(t_elem *list)
+void	free_list(t_elem **list)
 {
 	t_elem	*temp;
 
-	if (!list)
+	if (!list || !*list)
 		return ;
-	while(list)
+	while(*list)
 	{
-		temp = list;
-		list = list->next;
-		free(temp);
+		temp = (*list)->next;
+		free(*list);
+		*list = temp;
 	}
 }
 
-void	free_argv(char **argv)
+/* void	free_argv(char **argv)
 {
 	int i;
 
@@ -45,4 +45,4 @@ void	free_argv(char **argv)
 		i++;
 	}
 	free(argv);
-}
+} */

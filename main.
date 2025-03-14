@@ -6,7 +6,7 @@
 /*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:46:30 by yasmin            #+#    #+#             */
-/*   Updated: 2025/03/14 16:43:32 by yasmin           ###   ########.fr       */
+/*   Updated: 2025/03/12 19:12:27 by yasmin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 void	sorting(t_elem **a, t_elem **b)
 {
-	if(list_size(*a) == 2)
+	int	chunk_size;
+	
+	if(is_sorted(*a))
+		return ;
+	if(list_size(*a) == 2 && !is_sorted(*a))
 		sa(a);
 	else if(list_size(*a) == 3)
 		sort_three(a);
@@ -23,7 +27,16 @@ void	sorting(t_elem **a, t_elem **b)
 	else if(list_size(*a) == 5)
 		sort_five(a, b);
 	else
-		radix_sort(a, b);
+		if (list_size(*a) <= 100)
+		{
+			chunk_size = list_size(*a) / 5;
+			sort_chunks(a, b, chunk_size);
+		}
+		else if (list_size(*a) > 100)
+		{
+			chunk_size = list_size(*a) / 10;
+			sort_chunks(a, b, chunk_size);
+		}
 }
 
 
@@ -54,21 +67,21 @@ int	main(int ac, char **av)
 	t_elem *a;
 	t_elem	*b;
 
+	if(ac <= 2)
+	{
+		write(2, "Error\n", 6);
+		exit (1);
+	};
 	a = NULL;
 	b = NULL;
-	if(ac == 1 || (ac == 2 && !av[1][0]))
-		exit (1);
-	if (ft_parsing(&a, ac, av) || av[1] == NULL)
+	if(ac == 2 && av[1][0] == '\0')
+		return (1);
+	if(!check_arg(ac, av, &a))
 		error_check(&a);
-	if (is_sorted(&a))
-	{
-		free_list(&a);
-		return (0);
-	}
 	neutralize(&a);
 	sorting(&a, &b);
-	print_stack(&a, 'a');						// REMOVER
-	free_list(&a);
-	free_list(&b);
+	//print_stack(&a, 'a');						// REMOVER
+	free_list(a);
+	free_list(b);
 	return (0);
 }

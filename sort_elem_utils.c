@@ -6,7 +6,7 @@
 /*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 18:10:03 by yasmin            #+#    #+#             */
-/*   Updated: 2025/02/21 18:56:42 by yasmin           ###   ########.fr       */
+/*   Updated: 2025/03/12 16:49:47 by yasmin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,16 @@ int find_max(t_elem *stack)
 
 int	get_max_bits(t_elem *stack)
 {
-	int	max;
-	int	bits;
+	int	max_index;
+	int	max_bits;
 
-	max = find_max(stack);
-	bits = 0;
-	while(max)
+	max_index = list_size(stack) -1;
+	max_bits = 0;
+	while((max_index >> max_bits) != 0)
 	{
-		max >>= 1;
-		bits++;
+		max_bits++;
 	}
-	return (bits);
+	return (max_bits);
 }
 
 int	list_size(t_elem *stack)

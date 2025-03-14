@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ldummer- <ldummer-@student.42.fr>          +#+  +:+       +#+         #
+#    By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 14:53:46 by ymaia-do          #+#    #+#              #
-#    Updated: 2025/03/06 15:22:51 by ldummer-         ###   ########.fr        #
+#    Updated: 2025/03/14 16:07:13 by yasmin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,7 @@ LIBFTPRINTF_DIR = ./ft_printf
 LIBFT = $(LIBFT_DIR)/libft.a
 LIBFTPRINTF = $(LIBFTPRINTF_DIR)/ft_printf.a
 
-SRCS = check.c \
-       create_stack.c \
+SRCS = create_stack.c \
        neutralize.c \
        main.c \
        push.c \
@@ -26,7 +25,8 @@ SRCS = check.c \
        sort_elem.c \
        sort_elem_utils.c \
        swap.c \
-       error.c
+       error.c \
+	   parsing.c
 
 OBJS = $(SRCS:.c=.o)
 CC = cc
