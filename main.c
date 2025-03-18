@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ymaia-do <ymaia-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:46:30 by yasmin            #+#    #+#             */
-/*   Updated: 2025/03/14 16:43:32 by yasmin           ###   ########.fr       */
+/*   Updated: 2025/03/18 17:30:23 by ymaia-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,6 @@ void	sorting(t_elem **a, t_elem **b)
 		sort_five(a, b);
 	else
 		radix_sort(a, b);
-}
-
-
-//												REMOVER ESTA FUNCAO !
-void print_stack(t_elem **stack, char c)
-{
-	t_elem 	*current;
-
-	if (!stack || !*stack)
-		return ;
-	current = *stack;
-	if (c == 'a')
-		ft_printf("STACK A:\t");
-	else if (c == 'b')
-		ft_printf("STACK B:\t");
-	else
-		ft_printf("%c:\t", c);
-	while (current != NULL)
-	{
-		ft_printf("| %d ", current->num);
-		current = current->next;
-	}
-	ft_printf("\n");
 }
 
 int	main(int ac, char **av)
@@ -67,7 +44,6 @@ int	main(int ac, char **av)
 	}
 	neutralize(&a);
 	sorting(&a, &b);
-	print_stack(&a, 'a');						// REMOVER
 	free_list(&a);
 	free_list(&b);
 	return (0);

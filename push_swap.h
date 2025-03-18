@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ymaia-do <ymaia-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:39:42 by ymaia-do          #+#    #+#             */
-/*   Updated: 2025/03/14 17:01:49 by yasmin           ###   ########.fr       */
+/*   Updated: 2025/03/18 17:46:10 by ymaia-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,22 @@ typedef struct s_elem
 	struct s_elem *next;
 }	t_elem;
 
-//t_elem	*check_arg(int ac, char **av, t_elem **a);
-//char	**split_arg(char *str, int *ac, int *num, int *i);
-int	dont_is_number(char *str);
-int	check_duplicate(t_elem **stack);
-int	countain_space(char *str);
-
 t_elem *create_elem(int num);
 void	add_elem(t_elem **stack, t_elem *new);
 
 void	error_check(t_elem **stack);
 void	free_list(t_elem **list);
-//void	free_argv(char **argv);
 
-void	print_stack(t_elem **stack, char c);
+void	sorting(t_elem **a, t_elem **b);
 int		main(int ac, char **av);
+
+void	neutralize(t_elem **stack);
+
+int		ft_parsing(t_elem **stack, int argc, char **argv);
+int		build_stack(t_elem **stack, char **new_stack, int i);
+int		dont_is_number(char *str);
+int		check_duplicate(t_elem **stack);
+int		countain_space(char *str);
 
 void	pa(t_elem **a, t_elem **b);
 void	pb(t_elem **b, t_elem **a);
@@ -56,8 +57,8 @@ void	ra_no_print(t_elem **a);
 void	rb_no_print(t_elem **b);
 void	rr(t_elem **a, t_elem **b);
 
-void	move_to_top(t_elem **a, int min);
 int		find_min(t_elem *stack);
+void	move_to_top(t_elem **a, int min);
 int 	find_max(t_elem *stack);
 int		get_max_bits(t_elem *stack);
 int		list_size(t_elem *stack);
@@ -73,9 +74,5 @@ void	sb(t_elem **b);
 void	sa_no_print(t_elem **a);
 void	sb_no_print(t_elem **b);
 void	ss(t_elem **a, t_elem **b);
-
-void	neutralize(t_elem **stack);
-int		ft_parsing(t_elem **stack, int argc, char **argv);
-int		build_stack(t_elem **stack, char **new_stack, int i);
 
 #endif

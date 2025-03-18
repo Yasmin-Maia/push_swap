@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_elem.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ymaia-do <ymaia-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 17:47:34 by yasmin            #+#    #+#             */
-/*   Updated: 2025/03/14 16:44:30 by yasmin           ###   ########.fr       */
+/*   Updated: 2025/03/18 17:32:54 by ymaia-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,28 @@ void	sort_three(t_elem **a)
 	int		second;
 	int		third;
 
-	second = (*a)->next->num;
-	third = (*a)->next->next->num;
-	if((*a)->num > second && second < third && (*a)->num < third)
-		sa(a);
-	else if((*a)->num > second && second > third)
-	{
-		sa(a);
-		rra(a);
-	}
-	else if((*a)->num > second && second < third && (*a)->num > third)
+	second = (*a)->next->index;
+	third = (*a)->next->next->index;
+	if((*a)->index < second && (*a)->index < third)
 		ra(a);
-	else if((*a)->num < second && second > third && (*a)->num > third)
+	else if((*a)->index > second && (*a)->index < third)
 	{
-		rra(a);
 		sa(a);
 	}
-	else if((*a)->num < second && second > third && (*a)->num < third)
+	else if((*a)->index < second && (*a)->index > third)
+		rra(a);
+	else if((*a)->index > second && (*a)->index > third)
 	{
-		sa(a);
-		ra(a);
+		if (second < third)
+			ra(a);
+		if (second > third)
+		{
+			sa(a);
+			rra(a);
+		}
 	}
 }
+
 void	sort_four(t_elem **a, t_elem **b)
 {
 	int	min;
@@ -103,7 +103,7 @@ void	radix_sort(t_elem **a, t_elem **b)
                 pb(b, a);
             else
                 ra(a);
-            current = *a; // Atualiza o ponteiro para o próximo elemento
+            current = *a;
             j++;
         }
         while(*b)
