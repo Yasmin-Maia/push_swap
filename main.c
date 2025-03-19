@@ -6,7 +6,7 @@
 /*   By: ymaia-do <ymaia-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:46:30 by yasmin            #+#    #+#             */
-/*   Updated: 2025/03/18 17:30:23 by ymaia-do         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:12:02 by ymaia-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	sorting(t_elem **a, t_elem **b)
 {
-	if(list_size(*a) == 2)
+	if (list_size(*a) == 2)
 		sa(a);
-	else if(list_size(*a) == 3)
+	else if (list_size(*a) == 3)
 		sort_three(a);
-	else if(list_size(*a) == 4)
+	else if (list_size(*a) == 4)
 		sort_four(a, b);
-	else if(list_size(*a) == 5)
+	else if (list_size(*a) == 5)
 		sort_five(a, b);
 	else
 		radix_sort(a, b);
@@ -28,12 +28,12 @@ void	sorting(t_elem **a, t_elem **b)
 
 int	main(int ac, char **av)
 {
-	t_elem *a;
+	t_elem	*a;
 	t_elem	*b;
 
 	a = NULL;
 	b = NULL;
-	if(ac == 1 || (ac == 2 && !av[1][0]))
+	if (ac == 1 || (ac == 2 && !av[1][0]))
 		exit (1);
 	if (ft_parsing(&a, ac, av) || av[1] == NULL)
 		error_check(&a);

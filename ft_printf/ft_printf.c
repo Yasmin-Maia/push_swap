@@ -6,7 +6,7 @@
 /*   By: ymaia-do <ymaia-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 14:22:51 by yasmin            #+#    #+#             */
-/*   Updated: 2025/01/09 16:34:38 by ymaia-do         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:24:45 by ymaia-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int	ft_putptr(void *ptr)
 	return (i);
 }
 
-int	ft_putnbr_unsigned(unsigned nb)
+int	ft_putnbr_unsigned(unsigned int nb)
 {
 	long	n;
 	int		count;
-	
+
 	count = 0;
 	n = nb;
 	if (n >= 10)
@@ -37,13 +37,13 @@ int	ft_putnbr_unsigned(unsigned nb)
 	}
 	count += ft_putchar(n % 10 + '0');
 	return (count);
-} 
+}
 
-int ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
-	va_list args;
-	int 	count;
-	int 	i;
+	va_list	args;
+	int		count;
+	int		i;
 
 	i = 0;
 	count = 0;
@@ -55,7 +55,7 @@ int ft_printf(const char *format, ...)
 			i++;
 			count += ft_printf_format(format[i], args);
 		}
-		else 
+		else
 			count += ft_putchar(format[i]);
 		i++;
 	}
@@ -63,27 +63,27 @@ int ft_printf(const char *format, ...)
 	return (count);
 }
 
-int ft_printf_format(const char format, va_list args)
+int	ft_printf_format(const char format, va_list args)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (format == 'c')
 		count += ft_putchar((char)va_arg(args, int));
- 	else if (format == 's')
-		count += ft_putstr(va_arg(args, char*));
+	else if (format == 's')
+		count += ft_putstr(va_arg(args, char *));
 	else if (format == 'p')
-		count += ft_putptr(va_arg(args, void*));
+		count += ft_putptr(va_arg(args, void *));
 	else if (format == 'd')
 		count += ft_putnbr((long)va_arg(args, int));
 	else if (format == 'i')
 		count += ft_putnbr((long)va_arg(args, int));
 	else if (format == 'u')
-		count += ft_putnbr_unsigned(va_arg (args, unsigned int)); 
-	else if (format == 'x' || format == 'X') 
+		count += ft_putnbr_unsigned(va_arg (args, unsigned int));
+	else if (format == 'x' || format == 'X')
 		count += puthex((long)va_arg(args, unsigned int), format);
 	else if (format == '%')
-		return (ft_putchar('%')); 
+		return (ft_putchar('%'));
 	return (count);
 }
 

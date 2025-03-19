@@ -6,26 +6,26 @@
 /*   By: ymaia-do <ymaia-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:39:42 by ymaia-do          #+#    #+#             */
-/*   Updated: 2025/03/18 17:46:10 by ymaia-do         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:04:38 by ymaia-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include "libft/libft.h"
-#include "ft_printf/ft_printf.h"
-#include <limits.h>
+# include "libft/libft.h"
+# include "ft_printf/ft_printf.h"
+# include <limits.h>
 
 typedef struct s_elem
 {
-	int num;
-	int index;
-	int	chunk;
-	struct s_elem *next;
+	int				num;
+	int				index;
+	int				chunk;
+	struct s_elem	*next;
 }	t_elem;
 
-t_elem *create_elem(int num);
+t_elem	*create_elem(int num);
 void	add_elem(t_elem **stack, t_elem *new);
 
 void	error_check(t_elem **stack);
@@ -59,7 +59,7 @@ void	rr(t_elem **a, t_elem **b);
 
 int		find_min(t_elem *stack);
 void	move_to_top(t_elem **a, int min);
-int 	find_max(t_elem *stack);
+int		find_max(t_elem *stack);
 int		get_max_bits(t_elem *stack);
 int		list_size(t_elem *stack);
 

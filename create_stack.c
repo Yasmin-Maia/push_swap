@@ -6,16 +6,16 @@
 /*   By: ymaia-do <ymaia-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:53:59 by yasmin            #+#    #+#             */
-/*   Updated: 2025/03/18 17:50:56 by ymaia-do         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:57:14 by ymaia-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_elem *create_elem(int num)
+t_elem	*create_elem(int num)
 {
 	t_elem	*node;
-	
+
 	node = malloc(sizeof(t_elem));
 	if (!node)
 		return (NULL);
@@ -39,4 +39,3 @@ void	add_elem(t_elem **stack, t_elem *new)
 		temp = temp->next;
 	temp->next = new;
 }
-

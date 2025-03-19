@@ -6,7 +6,7 @@
 /*   By: ymaia-do <ymaia-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 17:47:34 by yasmin            #+#    #+#             */
-/*   Updated: 2025/03/18 17:30:39 by ymaia-do         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:58:45 by ymaia-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ void	neutralize(t_elem **stack)
 		}
 		content->index = i;
 		i = 0;
-		content = content->next; //verificar leaks
+		content = content->next;
 	}
 }

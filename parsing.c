@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasmin <yasmin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ymaia-do <ymaia-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 11:03:56 by yasmin            #+#    #+#             */
-/*   Updated: 2025/03/14 17:10:53 by yasmin           ###   ########.fr       */
+/*   Updated: 2025/03/19 15:01:53 by ymaia-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_parsing(t_elem **stack, int argc, char **argv)
 {
 	char	**new_stack;
 	int		i;
-	int 	result;
+	int		result;
 	int		j;
 
 	i = 1;
@@ -31,7 +31,7 @@ int	ft_parsing(t_elem **stack, int argc, char **argv)
 		i = 0;
 	}
 	result = build_stack(stack, new_stack, i);
-	 if (new_stack != argv)
+	if (new_stack != argv)
 	{
 		while (new_stack[j])
 			free(new_stack[j++]);
@@ -64,20 +64,19 @@ int	build_stack(t_elem **stack, char **new_stack, int i)
 	return (0);
 }
 
-
 int	dont_is_number(char *str)
 {
-	int i;
-	long n;
+	int		i;
+	long	n;
 
 	i = 0;
-	if(str[i] == '-' || str[i] == '+')
+	if (str[i] == '-' || str[i] == '+')
 		i++;
-	if(!str[i])
+	if (!str[i])
 		return (1);
-	while(str[i])
+	while (str[i])
 	{
-		if(!ft_isdigit(str[i]))
+		if (!ft_isdigit(str[i]))
 			return (1);
 		i++;
 	}
@@ -86,15 +85,16 @@ int	dont_is_number(char *str)
 		return (1);
 	return (0);
 }
+
 int	check_duplicate(t_elem **stack)
 {
 	t_elem	*current;
 	t_elem	*checker;
 
 	if (!(*stack) || (*stack)->next == *stack)
-		return (0);	
+		return (0);
 	current = *stack;
-	while(current->next != NULL)
+	while (current->next != NULL)
 	{
 		checker = current->next;
 		while (checker != NULL)
@@ -113,7 +113,7 @@ int	countain_space(char *str)
 	int	i;
 
 	i = 0;
-	while(str[i] != '\0')
+	while (str[i] != '\0')
 	{
 		if (str[i] == ' ')
 			return (0);

@@ -6,7 +6,7 @@
 /*   By: ymaia-do <ymaia-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 17:47:34 by yasmin            #+#    #+#             */
-/*   Updated: 2025/03/18 17:32:54 by ymaia-do         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:28:51 by ymaia-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	is_sorted(t_elem **a)
 	t_elem	*temp;
 
 	temp = *a;
-	while(temp->next)
+	while (temp->next)
 	{
-		if(temp->num > temp->next->num)
+		if (temp->num > temp->next->num)
 			return (0);
 		temp = temp->next;
 	}
@@ -33,15 +33,15 @@ void	sort_three(t_elem **a)
 
 	second = (*a)->next->index;
 	third = (*a)->next->next->index;
-	if((*a)->index < second && (*a)->index < third)
+	if ((*a)->index < second && (*a)->index < third)
 		ra(a);
-	else if((*a)->index > second && (*a)->index < third)
+	else if ((*a)->index > second && (*a)->index < third)
 	{
 		sa(a);
 	}
-	else if((*a)->index < second && (*a)->index > third)
+	else if ((*a)->index < second && (*a)->index > third)
 		rra(a);
-	else if((*a)->index > second && (*a)->index > third)
+	else if ((*a)->index > second && (*a)->index > third)
 	{
 		if (second < third)
 			ra(a);
@@ -70,7 +70,7 @@ void	sort_five(t_elem **a, t_elem **b)
 	int	min;
 
 	i = 0;
-	while(i < 2)
+	while (i < 2)
 	{
 		min = find_min(*a);
 		move_to_top(a, min);
@@ -84,30 +84,28 @@ void	sort_five(t_elem **a, t_elem **b)
 
 void	radix_sort(t_elem **a, t_elem **b)
 {
-    int	max_bits;
-    int i;
-    int	size;
-    int	j;
-    t_elem *current;
+	int		i;
+	int		size;
+	int		j;
+	t_elem	*current;
 
-    max_bits = get_max_bits(*a);
-    i = 0;
-    while(i < max_bits)
-    {
-        j = 0;
-        size = list_size(*a);
-        current = *a;
-        while(j < size)
-        {
-            if(((current->index >> i) & 1) == 0)
-                pb(b, a);
-            else
-                ra(a);
-            current = *a;
-            j++;
-        }
-        while(*b)
-            pa(a, b);
-        i++;
-    }
+	i = 0;
+	while (i < get_max_bits(*a))
+	{
+		j = 0;
+		size = list_size(*a);
+		current = *a;
+		while (j < size)
+		{
+			if (((current->index >> i) & 1) == 0)
+				pb(b, a);
+			else
+				ra(a);
+			current = *a;
+			j++;
+		}
+		while (*b)
+			pa(a, b);
+		i++;
+	}
 }

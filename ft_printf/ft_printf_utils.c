@@ -6,7 +6,7 @@
 /*   By: ymaia-do <ymaia-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 16:59:49 by yasmin            #+#    #+#             */
-/*   Updated: 2025/01/09 16:31:30 by ymaia-do         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:26:03 by ymaia-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_putchar(int c)
 {
-	int count;
+	int	count;
 
 	count = write (1, &c, 1);
 	return (count);
@@ -25,7 +25,7 @@ int	ft_putstr(char *str)
 	int	i;
 
 	i = 0;
-	if(str == NULL)
+	if (str == NULL)
 		return (ft_putstr("(null)"));
 	while (str[i] != '\0')
 	{
@@ -39,7 +39,7 @@ int	ft_putnbr(int nb)
 {
 	long	n;
 	int		count;
-	
+
 	count = 0;
 	n = nb;
 	if (n < 0)
@@ -53,7 +53,7 @@ int	ft_putnbr(int nb)
 	}
 	count += ft_putchar(n % 10 + '0');
 	return (count);
-} 
+}
 
 int	puthex(unsigned long long number, char def)
 {
@@ -72,6 +72,3 @@ int	puthex(unsigned long long number, char def)
 	i += ft_putchar(base[number % 16]);
 	return (i);
 }
-
-
-
