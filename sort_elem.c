@@ -6,7 +6,7 @@
 /*   By: ymaia-do <ymaia-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 17:47:34 by yasmin            #+#    #+#             */
-/*   Updated: 2025/03/19 15:28:51 by ymaia-do         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:48:37 by ymaia-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ void	sort_three(t_elem **a)
 	second = (*a)->next->index;
 	third = (*a)->next->next->index;
 	if ((*a)->index < second && (*a)->index < third)
-		ra(a);
-	else if ((*a)->index > second && (*a)->index < third)
 	{
 		sa(a);
+		ra(a);
 	}
+	else if ((*a)->index > second && (*a)->index < third)
+		sa(a);
 	else if ((*a)->index < second && (*a)->index > third)
 		rra(a);
 	else if ((*a)->index > second && (*a)->index > third)
@@ -60,8 +61,13 @@ void	sort_four(t_elem **a, t_elem **b)
 	min = find_min(*a);
 	move_to_top(a, min);
 	pb(b, a);
-	sort_three(a);
-	pa(a, b);
+	if (is_sorted(a))
+		pa(a, b);
+	else
+	{
+		sort_three(a);
+		pa(a, b);
+	}
 }
 
 void	sort_five(t_elem **a, t_elem **b)
@@ -77,35 +83,15 @@ void	sort_five(t_elem **a, t_elem **b)
 		pb(b, a);
 		i++;
 	}
-	sort_three(a);
-	pa(a, b);
-	pa(a, b);
-}
-
-void	radix_sort(t_elem **a, t_elem **b)
-{
-	int		i;
-	int		size;
-	int		j;
-	t_elem	*current;
-
-	i = 0;
-	while (i < get_max_bits(*a))
+	if (is_sorted(a))
 	{
-		j = 0;
-		size = list_size(*a);
-		current = *a;
-		while (j < size)
-		{
-			if (((current->index >> i) & 1) == 0)
-				pb(b, a);
-			else
-				ra(a);
-			current = *a;
-			j++;
-		}
-		while (*b)
-			pa(a, b);
-		i++;
+		pa(a, b);
+		pa(a, b);
+	}
+	else
+	{
+		sort_three(a);
+		pa(a, b);
+		pa(a, b);
 	}
 }

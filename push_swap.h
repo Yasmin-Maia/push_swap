@@ -6,7 +6,7 @@
 /*   By: ymaia-do <ymaia-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:39:42 by ymaia-do          #+#    #+#             */
-/*   Updated: 2025/03/19 15:04:38 by ymaia-do         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:52:15 by ymaia-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,17 @@ void	rb_no_print(t_elem **b);
 void	rr(t_elem **a, t_elem **b);
 
 int		find_min(t_elem *stack);
+int		get_min_position(t_elem *stack, int min);
 void	move_to_top(t_elem **a, int min);
 int		find_max(t_elem *stack);
-int		get_max_bits(t_elem *stack);
-int		list_size(t_elem *stack);
 
 int		is_sorted(t_elem **a);
 void	sort_three(t_elem **a);
 void	sort_four(t_elem **a, t_elem **b);
 void	sort_five(t_elem **a, t_elem **b);
+
+int		get_max_bits(t_elem *stack);
+int		list_size(t_elem *stack);
 void	radix_sort(t_elem **a, t_elem **b);
 
 void	sa(t_elem **a);

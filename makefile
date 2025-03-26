@@ -6,7 +6,7 @@
 #    By: ymaia-do <ymaia-do@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 14:53:46 by ymaia-do          #+#    #+#              #
-#    Updated: 2025/03/18 17:34:33 by ymaia-do         ###   ########.fr        #
+#    Updated: 2025/03/26 16:01:46 by ymaia-do         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCS = create_stack.c \
        rotate.c \
        sort_elem_utils.c \
        sort_elem.c \
-       swap.c
+       swap.c \
+	   sort_radix.c
 
 OBJS = $(SRCS:.c=.o)
 CC = cc
